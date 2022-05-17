@@ -10,4 +10,11 @@ export default class BishopClass extends FigureClass {
 		this.name = FigureNames.BISHOP;
 		this.logo = this.color === Colors.WHITE ? white_logo : black_logo;
 	}
+
+	canMove(target: CellClass): boolean {
+		if (!super.canMove(target)) {
+			return false;
+		}
+		return true;
+	}
 }

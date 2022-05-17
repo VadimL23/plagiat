@@ -24,6 +24,28 @@ export class BoardClass {
 		}
 	}
 
+	/** В цикле получаем ячейку(проверяем все ячейки на доске) target, затем изменяем поле avaliable у этой ячейки
+	 * чтобы определить доступна она для хода или нет.
+	 * Мы получаем фигуру, которая стоит на выбранной ячейке и вызываем у нее метод canMove. canMove возвращает
+	 * либо ture, если фигура может походить либо false. В качестве ячейки на которую хотим походить мы передаем target
+	 */
+
+	public highlightCells(selectedCell: CellClass | null) {
+		for (let i = 0; i < 8; i++) {
+			const row = this.cells[i];
+			for (let j = 0; j < 8; j++) {
+				const target = row[j];
+				target.avaliable = !!selectedCell?.figure?.canMove(target);
+			}
+		}
+	}
+
+	public getCopyBoard(): BoardClass {
+		const newBoard = new BoardClass();
+		newBoard.cells = this.cells;
+		return newBoard;
+	}
+
 	public getCell(x: number, y: number) {
 		return this.cells[y][x];
 	}

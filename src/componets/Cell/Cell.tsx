@@ -11,7 +11,12 @@ interface CellProps {
 
 const Cell: FC<CellProps> = ({ cell, selected, click }) => {
 	return (
-		<div className={cn('cell', cell.color, { selected })} onClick={() => click(cell)}>
+		<div
+			className={cn('cell', cell.color, { selected })}
+			onClick={() => click(cell)}
+			style={{ backgroundColor: cell.avaliable && cell.figure ? 'green' : '' }}
+		>
+			{cell.avaliable && !cell.figure && <div className="avaliable"></div>}
 			{cell.figure?.logo && <img src={cell.figure.logo} alt="" />}
 		</div>
 	);

@@ -79,3 +79,12 @@ header {
 .selected {
 	background-color: brown;
 }
+
+.avaliable {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: #22c022;
+	box-shadow: 0px 0px 15px 10px #0ae819;
+	opacity: 0.8;
+}

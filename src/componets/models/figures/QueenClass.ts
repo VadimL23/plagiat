@@ -10,4 +10,14 @@ export default class QueenCalss extends FigureClass {
 		this.name = FigureNames.QUEEN;
 		this.logo = this.color === Colors.WHITE ? white_logo : black_logo;
 	}
+
+	canMove(target: CellClass): boolean {
+		if (!super.canMove(target)) {
+			return false;
+		}
+		if (this.cell.isEmptyVertical(target)) return true;
+		if (this.cell.isEmptyHorizontal(target)) return true;
+		if (this.cell.isEmptyDiagonal(target)) return true;
+		return false;
+	}
 }
