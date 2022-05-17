@@ -1,6 +1,6 @@
 import { BoardClass } from './BoardClass';
 import { Colors } from './colors';
-import { FigureClass } from './figures/FigureClass';
+import FigureClass from './figures/FigureClass';
 
 export class CellClass {
 	readonly x: number;
