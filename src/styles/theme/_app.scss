@@ -62,10 +62,20 @@ header {
 	align-items: center;
 }
 
+.cell img {
+	max-width: 56px;
+	max-height: 56px;
+	position: relative;
+}
+
 .black {
 	background-color: deepskyblue;
 }
 
 .white {
 	background-color: #eed4ac;
+}
+
+.selected {
+	background-color: brown;
 }

@@ -1,5 +1,11 @@
 import { CellClass } from './CellClass';
 import { Colors } from './colors';
+import QueenClass from './figures/QueenClass';
+import PawnClass from './figures/PawnClass';
+import KingClass from './figures/KingClass';
+import BishopClass from './figures/BishopClass';
+import RookClass from './figures/RookClass';
+import KnightClass from './figures/KnightClass';
 
 export class BoardClass {
 	cells: CellClass[][] = [];
@@ -16,5 +22,58 @@ export class BoardClass {
 			}
 			this.cells.push(row);
 		}
+	}
+
+	public getCell(x: number, y: number) {
+		return this.cells[y][x];
+	}
+
+	private addPawns() {
+		for (let i = 0; i < 8; i++) {
+			new PawnClass(Colors.BLACK, this.getCell(i, 1));
+			new PawnClass(Colors.WHITE, this.getCell(i, 6));
+		}
+	}
+
+	private addKings() {
+		new KingClass(Colors.BLACK, this.getCell(4, 0));
+		new KingClass(Colors.WHITE, this.getCell(4, 7));
+	}
+
+	private addBishops() {
+		new BishopClass(Colors.BLACK, this.getCell(2, 0));
+		new BishopClass(Colors.BLACK, this.getCell(5, 0));
+		new BishopClass(Colors.WHITE, this.getCell(2, 7));
+		new BishopClass(Colors.WHITE, this.getCell(5, 7));
+	}
+
+	private addRooks() {
+		new RookClass(Colors.BLACK, this.getCell(0, 0));
+		new RookClass(Colors.BLACK, this.getCell(7, 0));
+		new RookClass(Colors.WHITE, this.getCell(0, 7));
+		new RookClass(Colors.WHITE, this.getCell(7, 7));
+	}
+
+	private addQueens() {
+		new QueenClass(Colors.BLACK, this.getCell(3, 0));
+		new QueenClass(Colors.WHITE, this.getCell(3, 7));
+	}
+
+	private addKnights() {
+		new KnightClass(Colors.BLACK, this.getCell(1, 0));
+		new KnightClass(Colors.BLACK, this.getCell(6, 0));
+		new KnightClass(Colors.WHITE, this.getCell(1, 7));
+		new KnightClass(Colors.WHITE, this.getCell(6, 7));
+	}
+
+	public addFigurs() {
+		this.addBishops();
+		this.addKings();
+		this.addKnights();
+		this.addPawns();
+		this.addQueens();
+		this.addRooks();
+
+		//	new QueenCalss(Colors.WHITE, this.getCell(3, 3));
 	}
 }
