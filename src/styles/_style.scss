@@ -1,0 +1,10 @@
+@import '~bootstrap/scss/bootstrap';
+@import './mixins';
+@import './theme/utils';
+
+@import './theme/variables';
+@import './theme/app';
+
+:root {
+	--red: #ff0000;
+}

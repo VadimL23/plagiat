@@ -1,2 +1,1 @@
-# plagiat
-plagiat chess
+# Plagit

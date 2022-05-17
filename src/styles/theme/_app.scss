@@ -1,0 +1,55 @@
+@font-face {
+	font-family: 'Roboto Slab';
+	font-weight: regular;
+	src: url('../../assets/fonts/RobotoSlab-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Manrope';
+	font-weight: regular;
+	src: url('../../assets/fonts/Manrope-Regular.ttf') format('truetype');
+}
+
+html {
+	font-size: $font-html;
+}
+
+body {
+	background-color: $cl-body;
+	font-family: $ff-main;
+	position: relative;
+	line-height: 2.2rem;
+	overflow-x: hidden;
+	margin: 0 auto;
+	margin: 0 auto;
+	color: $cl-font-body;
+	font-size: $fs_body;
+}
+
+header {
+	width: 100%;
+	position: relative;
+}
+
+::-webkit-scrollbar {
+	width: 0;
+}
+
+.page {
+	overflow: hidden;
+}
+
+.app {
+	width: 100vh;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.board {
+	width: calc(64px * 8);
+	height: calc(64px * 8);
+	display: flex;
+	flex-wrap: wrap;
+}
