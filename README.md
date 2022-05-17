@@ -1,1 +1,1 @@
-# Plagit
+# Plagiat
