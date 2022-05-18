@@ -15,6 +15,19 @@ export default class KingCalss extends FigureClass {
 		if (!super.canMove(target)) {
 			return false;
 		}
-		return true;
+		if (
+			(((target.x === this.cell.x + 1 && target.y === this.cell.y) ||
+				(target.x === this.cell.x - 1 && target.y === this.cell.y) ||
+				(target.x === this.cell.x && target.y === this.cell.y + 1) ||
+				(target.x === this.cell.x && target.y === this.cell.y - 1) ||
+				(target.x === this.cell.x + 1 && target.y === this.cell.y + 1) ||
+				(target.x === this.cell.x - 1 && target.y === this.cell.y + 1) ||
+				(target.x === this.cell.x + 1 && target.y === this.cell.y - 1) ||
+				(target.x === this.cell.x - 1 && target.y === this.cell.y - 1)) &&
+				this.cell.board.getCell(target.x, target.y).isEmpty()) ||
+			this.cell.board.getCell(target.x, target.y).isEnemy(target)
+		)
+			return true;
+		return false;
 	}
 }

@@ -6,9 +6,16 @@ import KingClass from './figures/KingClass';
 import BishopClass from './figures/BishopClass';
 import RookClass from './figures/RookClass';
 import KnightClass from './figures/KnightClass';
+import FigureClass from './figures/FigureClass';
 
 export class BoardClass {
-	cells: CellClass[][] = [];
+	cells: CellClass[][];
+	lostBlackFigures: FigureClass[] = [];
+	lostWhiteFigures: FigureClass[] = [];
+
+	constructor() {
+		this.cells = [];
+	}
 
 	public initCells() {
 		for (let i = 0; i < 8; i++) {
@@ -33,16 +40,19 @@ export class BoardClass {
 	public highlightCells(selectedCell: CellClass | null) {
 		for (let i = 0; i < 8; i++) {
 			const row = this.cells[i];
-			for (let j = 0; j < 8; j++) {
-				const target = row[j];
-				target.avaliable = !!selectedCell?.figure?.canMove(target);
-			}
+			if (row)
+				for (let j = 0; j < 8; j++) {
+					const target = row[j];
+					target.avaliable = !!selectedCell?.figure?.canMove(target);
+				}
 		}
 	}
 
 	public getCopyBoard(): BoardClass {
 		const newBoard = new BoardClass();
 		newBoard.cells = this.cells;
+		newBoard.lostBlackFigures = this.lostBlackFigures;
+		newBoard.lostWhiteFigures = this.lostWhiteFigures;
 		return newBoard;
 	}
 
@@ -95,7 +105,5 @@ export class BoardClass {
 		this.addPawns();
 		this.addQueens();
 		this.addRooks();
-
-		//	new QueenCalss(Colors.WHITE, this.getCell(3, 3));
 	}
 }

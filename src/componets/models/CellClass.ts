@@ -31,6 +31,11 @@ export class CellClass {
 		return this.figure === null;
 	}
 
+	isEnemy(target: CellClass): boolean {
+		if (target.figure) return target.figure?.color !== this.figure?.color;
+		return false;
+	}
+
 	isEmptyVertical(target: CellClass): boolean {
 		if (this.x !== target.x) {
 			return false;
@@ -83,9 +88,18 @@ export class CellClass {
 		this.figure.cell = this;
 	}
 
+	addLostFigure(figure: FigureClass) {
+		figure.color === Colors.BLACK
+			? this.board.lostBlackFigures.push(figure)
+			: this.board.lostWhiteFigures.push(figure);
+	}
+
 	moveFigure(target: CellClass) {
 		if (this.figure && this.figure.canMove(target)) {
 			this.figure.moveFigure(target);
+			if (target.figure) {
+				this.addLostFigure(target.figure);
+			}
 			target.setFigure(this.figure); // target.figure = this.figure;
 			this.figure = null;
 		}

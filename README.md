@@ -1,1 +1,3 @@
 # Plagiat
+
+![Preview](preview.jpg)
