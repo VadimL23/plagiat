@@ -11,11 +11,18 @@ interface BoarProps {
 	setBoard: (board: BoardClass) => void;
 	currentPlayer: Player | null;
 	swapPlayer: () => void;
+	selectedCell: CellClass | null;
+	setSelectedCell: (selectedCell: CellClass | null) => void;
 }
 
-const Board: FC<BoarProps> = ({ board, setBoard, currentPlayer, swapPlayer }) => {
-	const [selectedCell, setSelectedCell] = useState<CellClass | null>(null);
-
+const Board: FC<BoarProps> = ({
+	board,
+	setBoard,
+	currentPlayer,
+	swapPlayer,
+	selectedCell,
+	setSelectedCell
+}) => {
 	function click(cell: CellClass) {
 		if (selectedCell && selectedCell !== cell && selectedCell?.figure?.canMove(cell)) {
 			selectedCell.moveFigure(cell);

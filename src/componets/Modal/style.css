@@ -1,0 +1,9 @@
+.open {
+	height: 100%;
+	display: block;
+}
+
+.close {
+	height: 0;
+	display: none;
+}
