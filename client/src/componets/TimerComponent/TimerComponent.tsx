@@ -5,16 +5,22 @@ import { Player } from '../models/PlayersClass';
 interface TimerProps {
 	currentPlayer: Player | null;
 	restart: () => void;
+	timeoutCallBack: (player: Player | null) => void;
 }
 
-const TimerComponent: FC<TimerProps> = ({ currentPlayer, restart }) => {
-	const [blackTime, setBlackTime] = useState(300);
-	const [whiteTime, setWhiteTime] = useState(300);
+const TimerComponent: FC<TimerProps> = ({ currentPlayer, restart, timeoutCallBack }) => {
+	const [blackTime, setBlackTime] = useState(30);
+	const [whiteTime, setWhiteTime] = useState(1);
 	const timer = useRef<null | ReturnType<typeof setInterval>>(null);
 
 	useEffect(() => {
 		startTimer();
 	}, [currentPlayer]);
+
+	useEffect(() => {
+		if (!blackTime) timeoutCallBack(new Player(Colors.WHITE));
+		if (!whiteTime) timeoutCallBack(new Player(Colors.BLACK));
+	}, [blackTime, whiteTime]);
 
 	function startTimer() {
 		if (timer.current) {
@@ -25,13 +31,13 @@ const TimerComponent: FC<TimerProps> = ({ currentPlayer, restart }) => {
 		timer.current = setInterval(cb, 1000);
 	}
 
-	function decBlackTimer() {
+	const decBlackTimer = () => {
 		setBlackTime((prev) => prev - 1);
-	}
+	};
 
-	function decWhiteTimer() {
+	const decWhiteTimer = () => {
 		setWhiteTime((prev) => prev - 1);
-	}
+	};
 
 	function handleRestart() {
 		setWhiteTime(300);

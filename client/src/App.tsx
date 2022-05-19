@@ -14,6 +14,7 @@ function App() {
 	const [blackPlayer, setBlackPlayer] = useState<Player>(new Player(Colors.BLACK));
 	const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
 	const [selectedCell, setSelectedCell] = useState<CellClass | null>(null);
+	const [winner, setWinner] = useState<Player | null>(null);
 
 	useEffect(() => {
 		restart();
@@ -27,7 +28,12 @@ function App() {
 		setBoard(newBoard);
 		setCurrentPlayer(whitePlayer);
 		setSelectedCell(null);
+		setWinner(null);
 	}
+
+	const timeoutCB = (player: Player | null) => {
+		setWinner(player);
+	};
 
 	function swapPlayer() {
 		setCurrentPlayer(currentPlayer?.color === Colors.BLACK ? whitePlayer : blackPlayer);
@@ -35,7 +41,11 @@ function App() {
 
 	return (
 		<div className="app">
-			<TimerComponent currentPlayer={currentPlayer!} restart={restart} />
+			<TimerComponent
+				currentPlayer={currentPlayer!}
+				restart={restart}
+				timeoutCallBack={timeoutCB}
+			/>
 			<Board
 				board={board}
 				setBoard={setBoard}
@@ -50,8 +60,8 @@ function App() {
 			</div>
 			<Modal
 				callbackBtn={restart}
-				isOpen={false}
-				title="Player Win!"
+				isOpen={winner !== null}
+				title={`Player ${winner} win!`}
 				onModalClose={() => {
 					restart();
 				}}

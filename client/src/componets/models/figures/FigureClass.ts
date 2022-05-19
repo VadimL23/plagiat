@@ -26,7 +26,7 @@ export default class FigureClass {
 		this.cell.figure = this;
 		this.logo = null;
 		this.name = FigureNames.FIGURE;
-		this.id = Math.trunc(Math.random());
+		this.id = Math.trunc(Math.random() * 1000);
 	}
 
 	canMove(target: CellClass): boolean {
